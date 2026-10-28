@@ -25,7 +25,9 @@ export function scaleNutrients(food: FoodLike, grams: number): Nutrients {
   };
 }
 
-export function sumNutrients(items: Partial<Nutrients>[]): Nutrients {
+export type Totals = { [K in keyof Nutrients]: number };
+
+export function sumNutrients(items: Partial<Nutrients>[]): Totals {
   const t = { kcal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, sodium_mg: 0 };
   for (const i of items) {
     t.kcal += Number(i.kcal ?? 0);
